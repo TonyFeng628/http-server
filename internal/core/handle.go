@@ -69,18 +69,15 @@ func (core *Core)updateHandler(w http.ResponseWriter,r *http.Request){
 
 	w.Write([]byte("success"))
 }
-func (core *Core)deletaHandler(w http.ResponseWriter,r *http.Request){
+func (core *Core)deleteHandler(w http.ResponseWriter,r *http.Request){
 	var input dbm.ContactInfo
 	reqBody, err := ioutil.ReadAll(r.Body)
     if err != nil {
         log.Fatalln(err)
     }
-    fmt.Printf("%s", reqBody)  
-	if err == nil {
-		return
-	}
-	rets := core.dbm.Delete(input)
-	b, _ := json.Marshal(rets)
+    json.Unmarshal(reqBody,&input) 
+	core.dbm.Delete(input)
+	b, _ := json.Marshal(input)
 	w.Write(b)
 }
 

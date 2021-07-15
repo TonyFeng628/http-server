@@ -24,7 +24,7 @@ func (core *Core) Init() {
     http.HandleFunc("/create",core.createHandler)
     http.HandleFunc("/read",core.readHandler)
     http.HandleFunc("/update",core.updateHandler)
-    http.HandleFunc("/delete",core.updateHandler)
+    http.HandleFunc("/delete",core.deleteHandler)
 
 }
 
